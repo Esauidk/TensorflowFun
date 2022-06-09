@@ -1,7 +1,4 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
-from ast import arg
-from json import load
-from random import shuffle
 import tensorflow as tf
 import numpy as np
 import pandas as pd
