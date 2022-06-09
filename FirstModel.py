@@ -1,7 +1,7 @@
 import tensorflow as tf;
 import numpy as np;
 
-def main():
+def FirstModel(options):
 
     # Setup random dataset
     x = np.arange(1, 101, step=0.1)
@@ -16,12 +16,28 @@ def main():
     # Output Layer
     model.add(tf.keras.layers.Dense(units=1, input_shape=(1,)))
 
-    learningRate = 0.03
+    learning_rate = 0.03
     ecpoch = 100
-    model.compile(optimizer=tf.keras.optimizers.RMSprop(learningRate),
+    batch_size = None
+    
+
+    saveModel = False
+    loadModel = False
+    if options is not None:
+        print(options)
+        if options.learningRate is not None:
+            learning_rate = options.learningRate
+        if options.batchSize is not None:
+            batch_size = options.batchSize
+        if options.epochs is not None:
+            saveModel = options.epochs
+        loadModel = options.loadModel
+        saveModel = options.saveModel
+    
+    model.compile(optimizer=tf.keras.optimizers.RMSprop(learning_rate),
                 loss = "mean_squared_error",
                 metrics=[tf.keras.metrics.RootMeanSquaredError()])
     model.fit(x,y, epochs= ecpoch)
 
 if __name__ == "__main__":
-    main()
+    FirstModel(None)
