@@ -33,7 +33,7 @@ def readCommand(argv):
                         dest='modelMode',
                         )
     parser.add_option('-v', '--validationSplit',
-                        type='int',
+                        type='float',
                         dest='validationSplit',
                         help='The split of the test set for validation')
     parser.add_option('-s', '--save-model',
